@@ -3,19 +3,23 @@ import bgImage from "./bgsmallimg.png"
 import myColorFulImage from "../../Image/RagibColor.jpg"
 import myBWImage from "../../Image/RagibBW.jpg"
 import Typewriter from 'typewriter-effect';
+import MyButton from '../Buttons/myButton';
 const HeroSection = () => {
     const [blackAndWhite, setBlackAndWhite] = useState(true);
     const [shake, setShake] = useState(false);
     const imgStyle = {
         borderRadius: "50%",
-        height: "400px",
-        width: "400px",
+        height: "200px",
+        width: "200px",
         linearGradient: "rgba(black,0.5)"
     }
     return (
         <div>
-            <div className="hero-section active animate__animated animate__bounceInRight" style={{ backgroundColor: "#151515" }}>
-                <div className="carousel-caption">
+            <div className="hero-section active animate__animated animate__bounceInRight" >
+                <div className="my-image animate__animated animate__backInRight hero-child">
+                    <img onMouseOver={() => setBlackAndWhite(false)} onMouseOut={() => setBlackAndWhite(true)} style={imgStyle} src={blackAndWhite ? myBWImage : myColorFulImage} />
+                </div>
+                <div className="intro hero-child">
 
                     <Typewriter
                         onInit={(typewriter) => {
@@ -28,15 +32,13 @@ const HeroSection = () => {
                                 .pauseFor(1500)
                                 .deleteAll()
                                 .typeString("<h2>I am a Full-Stack Software Dev</h2>")
-                                .start();                               
-                        }}                       
-                    />
-                    <a className="btn btn-outline-light btn-lg" href="#personalInfo">About Me</a>
+                                .start();
+                        }}
+                    />                   
                 </div>
-                <div className="my-image animate__animated animate__backInRight">
-                    <img onMouseOver={() => setBlackAndWhite(false)} onMouseOut={() => setBlackAndWhite(true)} style={imgStyle} src={blackAndWhite ? myBWImage : myColorFulImage} />
+                <div className="hire-me-button hero-child">
+                <MyButton content="Hire Me"/>
                 </div>
-
             </div>
 
         </div>

@@ -1,25 +1,31 @@
 import React, { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import Nav from './Components/Nav/Nav'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Route, Switch } from 'react-router-dom'
 import Home from './Components/Home/Home'
-import About from './Components/About'
-import Projects from './Components/Projects'
+import ModeSelector from './Components/ModeSelector'
+import { useContext } from 'react'
+import { MainstoreContext } from './Stores/mainStore'
+import { observer } from 'mobx-react-lite'
 const App = () => {
-  
+  const darkMode = {
+  backgroundColor:"#151515",
+  color:"white",
+  transition: "0.5s"
+  }
+  const lightMode = {
+    backgroundColor:"white",
+    color:"#151515",
+    transition: "0.5s"
+  }
+  const store = useContext(MainstoreContext);
+  const {lightMode : light,setMode} = store;
   return (
-    <div >
+    <div style={light ? lightMode : darkMode }>
+      <ModeSelector setMode={setMode}/>
       <Nav />
-     <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />    
-        <Route exact path="/projects" component={Projects} />    
-        <Route exact path="/contact" component={Home} />          
-      </Switch>
+      <Home />   
     </div>
   )
 }
 
-export default App
+export default observer(App)

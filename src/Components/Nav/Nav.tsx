@@ -1,52 +1,42 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react"
+import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import "./nav.css"
 const Nav = () => {
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false);
+    const closeNav = () => setClick(false);
+    const desktopNav = {
+        width: "250px"
+    }
+    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+    const mobileNav = {
+        width: click ? "250px" : "0px"
+    }
+    const pcNavItems = {
+        opacity: "1"
+    }
+    const mobileNavItems = {
+        opacity: click ? "1" : "0"
+    }
     return (
-        <div>
-            <div className="navwidth">
-                <nav className="navbar">
-                    <div className="menu-icon" onClick={handleClick}>
-                        {/* <i className={click ? "fas fa-times" : "fas fa-bars"} /> */}
-                        <FontAwesomeIcon icon="bars" /> ==
-                    </div>
-                    <ul className={click ? "nav-menu active" : "nav-menu"}>
-                        <li className="nav-item">
-                        {"{"}
-                            <Link to="/" className="nav-link" onClick={closeMobileMenu}>
-                                Home
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/about" className="nav-link" onClick={closeMobileMenu}>
-                                About
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link
-                                to="/projects"
-                                className="nav-link"
-                                onClick={closeMobileMenu}
-                            >
-                                Projects
-                            </Link>
-                        </li>
+        <div style={{ backgroundColor: "#151515", position: "fixed", zIndex: 1 }}>
+            <div id="mySidenav" style={isTabletOrMobile ? mobileNav : desktopNav} className="sidenav">
+                <h1 style={isTabletOrMobile ? mobileNavItems : pcNavItems}>Ragib</h1>
+                <ul style={isTabletOrMobile ? mobileNavItems : pcNavItems}>
+                    {isTabletOrMobile && <li className="closebtn" onClick={() => closeNav()}>  &times;</li>}
+                    <li >About</li>
+                    <li >Services</li>
+                    <li >Clients</li>
+                    <li >Contact</li>
+                </ul>
+                <span className="copyright" style={isTabletOrMobile ? mobileNavItems : pcNavItems}>
+                    &copy; 2021 Ragib Ibne Hossain
+                </span>
 
-                        <li className="nav-item" >
-                           
-                            <Link to="/contact" className="nav-link" onClick={closeMobileMenu}>
-                                Contact Me
-                            </Link>
-                            {"}"}
-                        </li>
-                        
-                    </ul>
-                </nav>
             </div>
+            {isTabletOrMobile && <span className="nav-toggle-button" onClick={() => handleClick()}>&#9776;</span>}
         </div>
     )
 }

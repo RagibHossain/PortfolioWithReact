@@ -1,39 +1,45 @@
 .hero-section{
-    height: 800px;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
-.carousel-item{
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: 100%;
+.hero-child{
+  margin-top: 20px;
 }
-.carousel-caption{
-    position: absolute;
-    right: 70%;
-    top: 30%;
+
+.intro{
+    width: 200px;
     text-transform: uppercase;  
 }
-.my-image{
-    position: absolute;
-    left: 60%;
-    top: 30%;
+
+ .my-image{
+    /* margin: 10px; */
+} 
+.hire-me-button{
+    
 }
-.carousel-caption h1,.c2Header{
+.intro h1,.c2Header{
     font-size: 3.8rem;
     font-weight: 700;
     letter-spacing: .3rem;
     text-shadow: .1rem .1rem .5rem black;
     color: white;
 }
-.carousel-caption h3{
+.intro h3{
     font-size: 2.8rem;
     font-weight: 700;
     letter-spacing: .3rem;
      text-shadow: .1rem .1rem .5rem black;
 }
-.carousel-caption a{
+.intro a{
     margin-top: 1.0rem;
      border-width: medium;
     border-radius: 0;
     font-size: 1.1rem;
     
 }
+
+/*Buttons*/
